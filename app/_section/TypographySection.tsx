@@ -4,6 +4,7 @@ import React from "react";
 import { SectionCard } from "@/components/shared/layout/ui";
 import ColorControl from "@/components/shared/color/ColorControl";
 import TypographyControl from "@/components/shared/typography/TypographyControl";
+import { SegmentedControl } from "@/components/shared/input/SegmentedControl";
 import {
   SYSTEM_FONTS,
   GOOGLE_FONTS,
@@ -69,7 +70,15 @@ export default function TypographySection({
           setLineHeight={(v) => setKey("lineHeight")(v)}
         />
 
-        <div className="pt-4 border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="pt-4 border-t space-y-4" style={{ borderColor: "var(--border)" }}>
+          <div>
+            <label className="text-sm font-medium block mb-2" style={{ color: "var(--text)" }}>Text Align</label>
+            <SegmentedControl
+              value={state.textAlign}
+              onChange={(v) => setKey("textAlign")(v as "left" | "center" | "right")}
+              items={[{ value: "left", label: "Left" }, { value: "center", label: "Center" }, { value: "right", label: "Right" }]}
+            />
+          </div>
           <ColorControl
             label="Text Color"
             palette={[
